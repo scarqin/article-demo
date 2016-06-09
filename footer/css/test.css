@@ -1,0 +1,86 @@
+body{
+	padding: 0;
+	margin:0;
+}
+.table{
+	background-color:rgba(53, 210, 245, 0.09);
+}
+footer{
+    margin-top: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 12px;
+    text-align: center;
+    color: rgba(0,0,0,.5);
+    background-color:rgba(0,0,0,.1);
+}
+footer p{
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+}
+a:active, a:focus, a:hover, a:link {
+    color: #333;
+    text-decoration: none;
+}
+.absolute{
+	width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+.relative{
+	width: 100%;
+	position: relative;
+	bottom: 0;
+}
+/*div写法*/
+html, body {
+height: 100%;
+}
+.wrapper-add{
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -58px; 58px为footer的高度+margin
+}
+.push-add{
+height: 58px;
+}
+/*after 写法*/
+/*html, body {
+height: 100%;
+}
+.wrapper{
+  min-height: 100%;
+  margin-bottom: -58px; 
+}
+.wrapper:after {
+  content: "";
+  display: block;
+}
+.footer, .wrapper:after {
+  height: 58px; 
+}
+*/
+/*margin 写法*/
+/*html, body {
+height: 100%;
+}
+.wrapper {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -58px;
+}
+.main{
+	padding-bottom: 58px;
+}*/
+/*flex写法*/
+/*body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}*/
