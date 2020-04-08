@@ -1,0 +1,210 @@
+<html xml:lang="cn" lang="cn">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="keywords" content="anchor,fixed navigation hide anchor">
+    <link rel="stylesheet" href="https://qidian.gtimg.com/lulu/pure/css/common/ui.css">
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .navgation {
+            background-color: #2196f31f;
+            height: 60px;
+            position: fixed;
+            width: 100%;
+        }
+
+        .main {
+            padding: 60px 20px 0;
+        }
+
+        .title_placeholder {
+            padding-top: 60px;
+        }
+
+        .first {
+            padding-top: 60px;
+            margin-top: -60px;
+        }
+
+        .main_container {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .catalogue {
+            width: 300px;
+            margin-top: 60px;
+            flex-shrink: 0;
+            background-color: #ddd;
+            position: fixed;
+            right: 0;
+            height: 100%;
+        }
+
+        .anchor {
+            height: 60px;
+            margin-top: -60px;
+            visibility: hidden;
+        }
+
+        #forth:target {
+            padding-top: 60px;
+            margin-top: -60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navgation">
+    </div>
+    <div class="main_container">
+        <article class="main">
+            <h1 class="article-title">require和import的区别</h1>
+            <div data-id="5e67b6ef6fb9a07cbf46c77b" itemprop="articleBody" class="article-content">
+                <p>当前端应用越来越复杂时，我们想要将代码分割成不同的模块，便于复用、按需加载等。</p>
+                <p>require 和 import 分别是不同模块化规范下引入模块的语句，下文将介绍这两种方式的不同之处。</p>
+                <h3 class="heading first" id="first" data-id="heading-0">
+                    1.出现的时间、地点不同
+                </h3>
+                <table class="ui-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>年份</th>
+                            <th>出处</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>require/exports</td>
+                            <td>2009</td>
+                            <td>CommonJS</td>
+                        </tr>
+                        <tr>
+                            <td>import/export</td>
+                            <td>2015</td>
+                            <td>ECMAScript2015（ES6）</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 class="heading" data-id="heading-1">
+                    <span id="second" class="title_placeholder">2. require/exports 是运行时动态加载，import/export 是静态编译</span>
+                </h3>
+                <blockquote>
+                    <p>CommonJS 加载的是一个对象（即 module.exports 属性），该对象只有在脚本运行完才会生成。而 ES6
+                        模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。- 阮一峰</p>
+                </blockquote>
+                <div class="anchor" id="third"></div>
+                <h3 class="heading" data-id="heading-2">3. <a target="_blank"
+                        href="https://es6.ruanyifeng.com/#docs/module-loader#ES6-%E6%A8%A1%E5%9D%97%E4%B8%8E-CommonJS-%E6%A8%A1%E5%9D%97%E7%9A%84%E5%B7%AE%E5%BC%82"
+                        rel="nofollow noopener noreferrer">require/exports 输出的是一个值的拷贝，import/export 模块输出的是值的引用</a></h3>
+                <p>若两个文件同时引用一个模块，改变模块内的值时，require引入的模块内的值不会改变，而import引入的模块内的值会改变。</p>
+                <h3 id="forth" class="heading" data-id="heading-3">4. 用法不一致</h3>
+                <p>require/exports 的用法：</p>
+                <pre><code class="hljs bash copyable" lang="bash">const fs = require(<span class="hljs-string">'fs'</span>)
+    exports.fs = fs
+    module.exports = fs
+    <span class="copy-code-btn">复制代码</span></code></pre>
+                <p>import/export 的写法：
+                    import fs from 'fs'</p>
+                <pre><code class="hljs bash copyable" lang="bash">import {default as fs} from <span class="hljs-string">'fs'</span>
+    import * as fs from <span class="hljs-string">'fs'</span>
+    import {<span class="hljs-built_in">read</span>File} from <span class="hljs-string">'fs'</span>
+    import {<span class="hljs-built_in">read</span>File as <span class="hljs-built_in">read</span>} from <span class="hljs-string">'fs'</span>
+    import fs, {<span class="hljs-built_in">read</span>File} from <span class="hljs-string">'fs'</span>
+    
+    <span class="hljs-built_in">export</span> default fs
+    <span class="hljs-built_in">export</span> const fs
+    <span class="hljs-built_in">export</span> <span class="hljs-keyword">function</span> <span class="hljs-built_in">read</span>File
+    <span class="hljs-built_in">export</span> {<span class="hljs-built_in">read</span>File, <span class="hljs-built_in">read</span>}
+    <span class="hljs-built_in">export</span> * from <span class="hljs-string">'fs'</span>
+    <span class="copy-code-btn">复制代码</span></code></pre>
+                <h3 class="heading" data-id="heading-4">5. 不同端(客户端/服务器)的使用限制</h3>
+                <table class="ui-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>require/exports</th>
+                            <th>import/export</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Node.js</td>
+                            <td>所有版本</td>
+                            <td>Node 9.0+（启动需加上 flag --experimental-modules）<br>Node 13.2+（直接启动） <a target="_blank"
+                                    href="https://es6.ruanyifeng.com/#docs/module-loader#Node-js-%E5%8A%A0%E8%BD%BD"
+                                    rel="nofollow noopener noreferrer">如何使用？</a></td>
+                        </tr>
+                        <tr>
+                            <td>Chrome</td>
+                            <td>不支持</td>
+                            <td>61+</td>
+                        </tr>
+                        <tr>
+                            <td>Firefox</td>
+                            <td>不支持</td>
+                            <td>60+</td>
+                        </tr>
+                        <tr>
+                            <td>Safari</td>
+                            <td>不支持</td>
+                            <td>10.1+</td>
+                        </tr>
+                        <tr>
+                            <td>Edge</td>
+                            <td>不支持</td>
+                            <td>16+</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 class="heading" data-id="heading-5">6. 替代方案</h3>
+                <p>CommonJS 模块化方案 require/exports 是为服务器端开发设计的。服务器模块系统<strong>同步</strong>读取模块文件内容，编译执行后得到模块接口。（Node.js 是
+                    CommonJS 规范的实现）。</p>
+                <p>在浏览器端，因为其<strong>异步</strong>加载脚本文件的特性，CommonJS 规范无法正常加载。所以出现了 RequireJS、SeaJS（兼容 CommonJS
+                    ）为浏览器设计的模块化方案。</p>
+                <p>两种方案各有各的限制，需要注意以下几点：</p>
+                <ul>
+                    <li>原生浏览器不支持 require/imports，可使用支持 CommonJS 模块规范的打包工具 Browsersify、webpack 等打包代码。</li>
+                    <li>import/export 在浏览器中无法直接使用，我们需要在引入模块的 &lt;script&gt; 元素上添加type="module属性。</li>
+                    <li>即使 Node.js 13.2+ 已经支持 import/export，Node.js官方不建议在正式环境使用，目前可以使用 <a target="_blank"
+                            href="https://babeljs.io/" rel="nofollow noopener noreferrer">babel</a> 将 ES6 的模块系统编译成
+                        CommonJS 规范（注意：语法一样，但具体实现还 是require/exports）。</li>
+                </ul>
+                <h3 class="heading">7. 参考资料</h3>
+                <ul>
+                    <li><a target="_blank"
+                            href="https://es6.ruanyifeng.com/#docs/module-loader#ES6-%E6%A8%A1%E5%9D%97%E4%B8%8E-CommonJS-%E6%A8%A1%E5%9D%97%E7%9A%84%E5%B7%AE%E5%BC%82"
+                            rel="nofollow noopener noreferrer">阮一峰-ECMAScript 6 入门</a></li>
+                </ul>
+                <ul>
+                    <li><a target="_blank" href="https://www.zhihu.com/question/56820346"
+                            rel="nofollow noopener noreferrer">寸志-知乎回答-require，import区别</a></li>
+                    <li><a target="_blank" href="https://github.com/seajs/seajs/issues/269"
+                            rel="nofollow noopener noreferrer">从 CommonJS 到 Sea.js</a></li>
+                    <li><a target="_blank" href="https://zhuanlan.zhihu.com/p/75980415"
+                            rel="nofollow noopener noreferrer">sunshine-前端模块化（AMD、CommonJS、UMD）总结</a></li>
+                    <li><a target="_blank" href="https://juejin.im/post/5cab1a0bf265da24ca53b4ee#1999---2009"
+                            rel="">橡树上-JavaScript 模块化总结</a></li>
+                    <li><a target="_blank"
+                            href="https://www.zhangxinxu.com/wordpress/2018/08/browser-native-es6-export-import-module/"
+                            rel="nofollow noopener noreferrer">张鑫旭-万岁，浏览器原生支持ES6 export和import模块啦！</a></li>
+                </ul>
+            </div>
+        </article>
+        <div class="catalogue">
+            <ul>
+                <li><a href="#first">第一段(使用 padding+margin 组合)</a></li>
+                <li><a href="#second">第二段（使用非替换内联元素）</a></li>
+                <li><a href="#third">第三段（暗锚点）</a></li>
+                <li><a href="#forth">第四段（:target 伪类）</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
