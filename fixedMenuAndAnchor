@@ -26,6 +26,7 @@
         }
 
         .first {
+            position: relative;
             padding-top: 60px;
             margin-top: -60px;
         }
@@ -45,10 +46,9 @@
             height: 100%;
         }
 
-        .anchor {
+        .dark_anchor {
             height: 60px;
             margin-top: -60px;
-            visibility: hidden;
         }
 
         #forth:target {
@@ -67,7 +67,7 @@
             <div data-id="5e67b6ef6fb9a07cbf46c77b" itemprop="articleBody" class="article-content">
                 <p>当前端应用越来越复杂时，我们想要将代码分割成不同的模块，便于复用、按需加载等。</p>
                 <p>require 和 import 分别是不同模块化规范下引入模块的语句，下文将介绍这两种方式的不同之处。</p>
-                <h3 class="heading first" id="first" data-id="heading-0">
+                <h3 class="heading first" id="first">
                     1.出现的时间、地点不同
                 </h3>
                 <table class="ui-table">
@@ -91,19 +91,19 @@
                         </tr>
                     </tbody>
                 </table>
-                <h3 class="heading" data-id="heading-1">
+                <h3 class="heading">
                     <span id="second" class="title_placeholder">2. require/exports 是运行时动态加载，import/export 是静态编译</span>
                 </h3>
                 <blockquote>
                     <p>CommonJS 加载的是一个对象（即 module.exports 属性），该对象只有在脚本运行完才会生成。而 ES6
                         模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。- 阮一峰</p>
                 </blockquote>
-                <div class="anchor" id="third"></div>
-                <h3 class="heading" data-id="heading-2">3. <a target="_blank"
+                <div class="dark_anchor" id="third"></div>
+                <h3 class="heading">3. <a target="_blank"
                         href="https://es6.ruanyifeng.com/#docs/module-loader#ES6-%E6%A8%A1%E5%9D%97%E4%B8%8E-CommonJS-%E6%A8%A1%E5%9D%97%E7%9A%84%E5%B7%AE%E5%BC%82"
                         rel="nofollow noopener noreferrer">require/exports 输出的是一个值的拷贝，import/export 模块输出的是值的引用</a></h3>
                 <p>若两个文件同时引用一个模块，改变模块内的值时，require引入的模块内的值不会改变，而import引入的模块内的值会改变。</p>
-                <h3 id="forth" class="heading" data-id="heading-3">4. 用法不一致</h3>
+                <h3 id="forth" class="heading">4. 用法不一致</h3>
                 <p>require/exports 的用法：</p>
                 <pre><code class="hljs bash copyable" lang="bash">const fs = require(<span class="hljs-string">'fs'</span>)
     exports.fs = fs
